@@ -1,0 +1,35 @@
+/* =========================================
+   ResumeAI Page Layout Utilities
+   ========================================= */
+
+/* Main container */
+.resume-container {
+  @apply max-w-7xl mx-auto px-6 py-12 min-h-screen;
+}
+
+/* Upload section (left panel) */
+.upload-section {
+  @apply lg:col-span-4
+         bg-surface
+         rounded-3xl
+         p-8
+         border border-border
+         shadow-soft
+         sticky top-24;
+}
+
+/* Results section (right panel) */
+.results-section {
+  @apply lg:col-span-8 space-y-6;
+}
+
+/* Resume drop zone */
+.drop-zone {
+  @apply border-2 border-dashed border-border
+         rounded-2xl p-10
+         flex flex-col items-center justify-center
+         bg-surfaceSoft
+         hover:border-primary-600
+         hover:bg-surface
+         transition-all cursor-pointer;
+}

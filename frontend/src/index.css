@@ -1,0 +1,42 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Import global design system */
+@import "./styles/global.css";
+
+@layer components {
+  /* Card */
+  .card {
+    @apply bg-surface border border-border rounded-3xl shadow-card;
+  }
+
+  /* Glass Card */
+  .glass-card {
+    @apply bg-surface/70 backdrop-blur-glass border border-border rounded-3xl shadow-soft;
+  }
+
+  /* Primary Button */
+  .btn-primary {
+    @apply inline-flex items-center justify-center gap-2
+           bg-primary-600 text-white
+           px-6 py-3 rounded-xl font-semibold
+           hover:bg-primary-700
+           active:scale-95
+           transition-all duration-200
+           focus:ring-2 focus:ring-primary-600
+           disabled:bg-surfaceSoft
+           disabled:text-text-muted
+           disabled:cursor-not-allowed;
+  }
+
+  /* Secondary Button */
+  .btn-secondary {
+    @apply inline-flex items-center justify-center gap-2
+           bg-surfaceSoft text-text-primary
+           border border-border
+           px-6 py-3 rounded-xl font-medium
+           hover:bg-surface
+           transition-all;
+  }
+}

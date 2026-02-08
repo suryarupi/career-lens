@@ -1,0 +1,83 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  /* ================================
+     Root & Body
+     ================================ */
+  html {
+    @apply bg-background text-text-primary antialiased;
+    font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply min-h-screen bg-background text-text-primary;
+    margin: 0;
+  }
+
+  /* ================================
+     Typography System
+     ================================ */
+  h1 {
+    @apply text-4xl font-semibold tracking-tight text-text-primary;
+  }
+
+  h2 {
+    @apply text-3xl font-semibold tracking-tight text-text-primary;
+  }
+
+  h3 {
+    @apply text-2xl font-medium text-text-primary;
+  }
+
+  h4 {
+    @apply text-xl font-medium text-text-primary;
+  }
+
+  p {
+    @apply text-base leading-relaxed text-text-secondary;
+  }
+
+  small {
+    @apply text-sm text-text-muted;
+  }
+
+  /* ================================
+     Links
+     ================================ */
+  a {
+    @apply text-primary-400 hover:text-primary-600 transition-colors;
+  }
+
+  /* ================================
+     Buttons (Global defaults)
+     ================================ */
+  button {
+    @apply focus:outline-none focus-visible:ring-2 focus-visible:ring-primary-600;
+  }
+
+  /* ================================
+     Form Elements
+     ================================ */
+  input,
+  textarea,
+  select {
+    @apply bg-surface text-text-primary
+           border border-border
+           rounded-xl px-3 py-2
+           transition-colors duration-150
+           focus:border-primary-600
+           focus:ring-1 focus:ring-primary-600;
+  }
+}
+
+@layer components {
+  /* ================================
+     Glass Utility
+     ================================ */
+  .glass {
+    @apply bg-surface/70 backdrop-blur-glass border border-border;
+  }
+}
