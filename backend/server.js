@@ -28,6 +28,34 @@ connectDB();
 // All resume-related requests will start with /api/resume
 app.use('/api/resume', resumeRoutes);
 
+app.get('/api/opportunities', (req, res) => {
+  const mockJobs = [
+    {
+      _id: "1",
+      title: "MERN Stack Developer",
+      company: "Innovate AI",
+      location: "Remote",
+      type: "Full-time",
+      matchScore: 92,
+      requiredSkills: ["MongoDB", "Express", "React", "Node.js"],
+      link: "https://example.com/apply/1",
+      date: "Posted 2h ago"
+    },
+    {
+      _id: "2",
+      title: "Frontend Engineer",
+      company: "Pixel Perfect",
+      location: "Bengaluru, IN",
+      type: "Internship",
+      matchScore: 85,
+      requiredSkills: ["React", "Tailwind CSS", "JavaScript"],
+      link: "https://example.com/apply/2",
+      date: "Posted 5h ago"
+    }
+  ];
+  res.json(mockJobs);
+});
+
 // --- 🏥 HEALTH CHECK ---
 // Useful for verifying the server is actually up in your browser
 app.get('/', (req, res) => {

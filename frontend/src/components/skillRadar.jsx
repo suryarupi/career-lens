@@ -10,7 +10,6 @@ import {
 } from 'chart.js';
 import { Radar } from 'react-chartjs-2';
 
-// Registering the Chart.js modules
 ChartJS.register(
   RadialLinearScale,
   PointElement,
@@ -20,33 +19,39 @@ ChartJS.register(
   Legend
 );
 
-const SkillRadar = () => {
+// We accept 'data' as a prop now
+const SkillRadar = ({ data: apiData }) => {
+  
+  // Dynamic labels and values from the API, with fallbacks
+  const labels = apiData?.labels || [
+    'Data Structures', 'Web Dev', 'ML', 'Cybersecurity', 'Cloud', 'Soft Skills'
+  ];
+  
+  const userValues = apiData?.values || [0, 0, 0, 0, 0, 0];
+  const industryValues = [90, 85, 80, 75, 85, 90]; // Fixed benchmarks
+
   const data = {
-    labels: [
-      'Data Structures', 
-      'Web Development', 
-      'Machine Learning', 
-      'Cybersecurity', 
-      'Cloud Computing', 
-      'Soft Skills'
-    ],
+    labels: labels,
     datasets: [
       {
         label: 'Your Current Skills',
-        data: [85, 60, 40, 30, 50, 75], // These will come from your Backend/AI later
-        backgroundColor: 'rgba(59, 130, 246, 0.2)', // Light Blue
-        borderColor: '#3b82f6', // Bright Blue
+        data: userValues,
+        backgroundColor: 'rgba(59, 130, 246, 0.2)', 
+        borderColor: '#3b82f6', 
         borderWidth: 3,
         pointBackgroundColor: '#3b82f6',
+        pointBorderColor: '#fff',
+        pointHoverBackgroundColor: '#fff',
+        pointHoverBorderColor: '#3b82f6',
       },
       {
         label: 'Industry Standard',
-        data: [90, 85, 80, 75, 85, 90], // Target benchmarks
-        backgroundColor: 'rgba(244, 63, 94, 0.1)', // Light Red/Rose
-        borderColor: '#f43f5e', // Rose Red
+        data: industryValues,
+        backgroundColor: 'rgba(244, 63, 94, 0.05)', 
+        borderColor: 'rgba(244, 63, 94, 0.4)', 
         borderWidth: 2,
-        borderDash: [5, 5], // Dotted line for the "Target"
-        pointBackgroundColor: '#f43f5e',
+        borderDash: [5, 5], 
+        pointRadius: 0, // Keep it clean
       },
     ],
   };
@@ -54,21 +59,36 @@ const SkillRadar = () => {
   const options = {
     scales: {
       r: {
-        angleLines: { display: true },
+        grid: { color: 'rgba(255, 255, 255, 0.1)' }, // Dark mode grid lines
+        angleLines: { color: 'rgba(255, 255, 255, 0.1)' },
+        pointLabels: {
+          color: '#94a3b8', // Slate-400 for better readability
+          font: { size: 11, weight: '600' }
+        },
         suggestedMin: 0,
         suggestedMax: 100,
-        ticks: { stepSize: 20, display: false }
+        ticks: { display: false }
       },
     },
     plugins: {
       legend: {
         position: 'bottom',
+        labels: {
+          color: '#cbd5e1', // Slate-300
+          usePointStyle: true,
+          padding: 20,
+          font: { size: 12 }
+        },
       },
     },
     maintainAspectRatio: false,
   };
 
-  return <Radar data={data} options={options} />;
+  return (
+    <div className="w-full h-full min-h-[350px]">
+      <Radar data={data} options={options} />
+    </div>
+  );
 };
 
 export default SkillRadar;
